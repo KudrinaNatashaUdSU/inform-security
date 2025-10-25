@@ -1,10 +1,50 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <title>Лабы по информационной безопасности</title>
-</head>
-<body>
-    <script src="main.js"></script>
-</body>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Лабы по информационной безопасности</title>
+    </head>
+
+    <body>
+        <script src="lab1/SingleAlphabetReplacementCipher.js"></script> 
+        <script src="lab2/VigenereCipher.js"></script> 
+        <script src="main.js"></script>
+        <link rel="stylesheet" href="style.css">
+
+        <button class="mainButton" id="SARCButton">Шифр одноалфавитной замены</button>
+        <button class="mainButton" id="vigCipherButton">Квадрат Виженера</button>
+        <button class="mainButton" id="rusStandartButton">ГОСТ-28147-89</button>
+
+        <div class="hidden" id="SARC">
+            <h2>Шифр одноалфавитной замены</h2>
+            <textarea class="flex" id="textSARC" placeholder="Введите текст"></textarea>
+            <textarea class="flex" id="keySARC" placeholder="Введите ключ (в формате буква: буква, ..., буква: буква)"></textarea>
+            <textarea class="flex" id="resultSARC" placeholder="Результат"></textarea>
+            <button class="action SARC" id="encodeSARC">Зашифровать</button>
+            <button class="action SARC" id="decodeSARC">Расшифровать</button>
+            <button class="action SARC" id="breakSARC">Взломать</button>
+        </div>
+        
+        <div class="hidden" id="vigCipher">
+            <h2>Квадрат Виженера</h2>
+            <textarea class="flex" id="textVigCipher" placeholder="Введите текст"></textarea>
+            <textarea class="flex" id="keyVigCipher" placeholder="Введите ключ"></textarea>
+            <textarea class="flex" id="resultVigCipher" placeholder="Результат"></textarea>
+            <button class="action vigCipher" id="encodeVigCipher">Зашифровать</button>
+            <button class="action vigCipher" id="decodeVigCipher">Расшифровать</button>
+        </div>
+
+        <div class="hidden" id="rusStandart">
+            <h2>ГОСТ-28147-89</h2>
+            <textarea class="flex" id="textRusStandart" placeholder="Введите текст"></textarea>
+            <textarea class="flex" id="keyRusStandart" placeholder="Введите ключ"></textarea>
+            <textarea class="flex" id="resultRusStandart" placeholder="Результат"></textarea>
+            <button class="action rusStandart" id="encodeRusStandart">Зашифровать</button>
+            <button class="action rusStandart" id="decodeRusStandart">Расшифровать</button>
+        </div>
+
+
+    </body>
+
 </html>
