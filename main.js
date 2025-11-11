@@ -1,4 +1,4 @@
-(window.onload = () => {
+window.onload = () => {
     const mainButtons = document.querySelectorAll('.mainButton');
     const hiddenBlocks = document.querySelectorAll('.hidden');
 
@@ -39,7 +39,29 @@
             }
         });
     });
-}) ()
+
+    const actionGermanCipherButtons = document.querySelectorAll('.action.germanCipher');
+
+    actionGermanCipherButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            let buttonId = button.id;
+            let text = document.getElementById('textGermanCipher').value;
+            let key = document.getElementById('keyGermanCipher').value;
+
+            if (!hasOnlyEnglish(text)) {
+                document.getElementById('textGermanCipher').value = 'Используйте английский алфавит!'
+            }
+            else {
+                const gc = new GermanCipher();
+                if (buttonId === 'encodeGermanCipher') {
+                    document.getElementById('resultGermanCipher').value = gc.encode(text, key);
+                } else if (buttonId === 'decodeGermanCipher') {
+                    document.getElementById('resultGermanCipher').value = gc.decode(text, key);
+                } 
+            }
+        });
+    });
+}
 
 function parseKeySARC(keyText) {
     let objKey = {};
@@ -57,4 +79,10 @@ function getLanguage(text) {
     if (hasEnglish && !hasRussian) return 'en';
     else if (!hasEnglish && hasRussian) return 'rus'
     else return null;
+}
+
+function hasOnlyEnglish(text) {
+    const hasEnglish = /[a-zA-Z]/.test(text);
+    const hasRussian = /[а-яА-ЯёЁ]/.test(text); 
+    return hasEnglish && !hasRussian;
 }
