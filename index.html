@@ -9,17 +9,18 @@
     <body>
         <script src="lab1/SingleAlphabetReplacementCipher.js"></script> 
         <script src="lab2/GermanCipher.js"></script> 
+        <script src="lab3/RC5.js"></script>
         <script src="main.js"></script>
         <link rel="stylesheet" href="style.css">
 
         <button class="mainButton" id="SARCButton">Шифр одноалфавитной замены</button>
         <button class="mainButton" id="germanCipherButton">Немецкий шифр 1-й мировой</button>
-        <button class="mainButton" id="rusStandartButton">ГОСТ-28147-89</button>
+        <button class="mainButton" id="RC5Button">Стандарт RC5</button>
 
         <div class="hidden" id="SARC">
             <h2>Шифр одноалфавитной замены</h2>
             <textarea class="flex" id="textSARC" placeholder="Введите текст"></textarea>
-            <textarea class="flex" id="keySARC" placeholder="Введите ключ (в формате буква: буква, ..., буква: буква)"></textarea>
+            <textarea class="flex" id="keySARC" placeholder="Введите ключ (в формате буква: буква, ..., буква: буква)">ё:ю,й:б,ц:ь,у:т,к:и,е:м,н:с,г:ч,ш:я,щ:э,з:ж,х:д,ъ:л,ф:о,ы:р,в:п,а:в,п:а,р:ы,о:ф,л:ъ,д:х,ж:з,э:щ,я:ш,ч:г,с:н,м:е,и:к,т:у,ь:ц,б:й,ю:ё</textarea>
             <textarea class="flex" id="resultSARC" placeholder="Результат"></textarea>
             <button class="action SARC" id="encodeSARC">Зашифровать</button>
             <button class="action SARC" id="decodeSARC">Расшифровать</button>
@@ -28,20 +29,20 @@
         
         <div class="hidden" id="germanCipher">
             <h2>Немецкий шифр 1-й мировой</h2>
-            <textarea class="flex" id="textGermanCipher" placeholder="Введите текст"></textarea>
-            <textarea class="flex" id="keyGermanCipher" placeholder="Введите ключевое слово"></textarea>
+            <textarea class="flex" id="textGermanCipher" placeholder="Введите текст (ENG)"></textarea>
+            <textarea class="flex" id="keyGermanCipher" placeholder="Введите ключевое слово (ENG)"></textarea>
             <textarea class="flex" id="resultGermanCipher" placeholder="Результат"></textarea>
             <button class="action germanCipher" id="encodeGermanCipher">Зашифровать</button>
             <button class="action germanCipher" id="decodeGermanCipher">Расшифровать</button>
         </div>
 
-        <div class="hidden" id="rusStandart">
-            <h2>ГОСТ-28147-89</h2>
-            <textarea class="flex" id="textRusStandart" placeholder="Введите текст"></textarea>
-            <textarea class="flex" id="keyRusStandart" placeholder="Введите ключ"></textarea>
-            <textarea class="flex" id="resultRusStandart" placeholder="Результат"></textarea>
-            <button class="action rusStandart" id="encodeRusStandart">Зашифровать</button>
-            <button class="action rusStandart" id="decodeRusStandart">Расшифровать</button>
+        <div class="hidden" id="RC5">
+            <h2>Стандарт RC5</h2>
+            <textarea class="flex" id="textRC5" placeholder="Введите текст"></textarea>
+            <textarea class="flex" id="keyRC5" placeholder="Ключ (автозаполнение)"></textarea>
+            <textarea class="flex" id="resultRC5" placeholder="Результат"></textarea>
+            <button class="action RC5" id="encodeRC5">Зашифровать</button>
+            <button class="action RC5" id="decodeRC5">Расшифровать</button>
         </div>
 
 

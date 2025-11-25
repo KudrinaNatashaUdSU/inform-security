@@ -5,7 +5,7 @@ window.onload = () => {
     mainButtons.forEach(button => {
         button.addEventListener('click', () => {
             let buttonId = button.id;
-            let blockId = buttonId.replace('Button','');
+            let blockId = buttonId.replace('Button', '');
 
             hiddenBlocks.forEach(block => {
                 block.classList.add('hidden');
@@ -16,7 +16,7 @@ window.onload = () => {
     });
 
     const actionSARCButtons = document.querySelectorAll('.action.SARC');
-    
+
     actionSARCButtons.forEach(button => {
         button.addEventListener('click', () => {
             let buttonId = button.id;
@@ -57,15 +57,35 @@ window.onload = () => {
                     document.getElementById('resultGermanCipher').value = gc.encode(text, key);
                 } else if (buttonId === 'decodeGermanCipher') {
                     document.getElementById('resultGermanCipher').value = gc.decode(text, key);
-                } 
+                }
             }
+        });
+    });
+
+    const actionRC5Buttons = document.querySelectorAll('.action.RC5');
+
+    actionRC5Buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            const rc5 = new RC5();
+            let buttonId = button.id;
+            let text = document.getElementById('textRC5').value;
+            document.getElementById('keyRC5').value = rc5.randomKey();
+            //let roundsCount = parseInt(document.getElementById('roundsCount').value);
+            
+            if (buttonId === 'encodeRC5') {
+                document.getElementById('resultRC5').value = rc5.encode(text, document.getElementById('keyRC5').value);
+                console.log(document.getElementById('keyRC5').value); // не доходит !!!
+            } else if (buttonId === 'decodeRC5') {
+                document.getElementById('resultRC5').value = rc5.decode(text, document.getElementById('keyRC5').value);
+            }
+
         });
     });
 }
 
 function parseKeySARC(keyText) {
     let objKey = {};
-    let lines = keyText.replaceAll('\n','').replaceAll(' ','').split(',');
+    let lines = keyText.replaceAll('\n', '').replaceAll(' ', '').split(',');
     for (let line of lines) {
         let pair = line.split(':');
         objKey[pair[0]] = pair[1];
@@ -75,7 +95,7 @@ function parseKeySARC(keyText) {
 
 function getLanguage(text) {
     const hasEnglish = /[a-zA-Z]/.test(text);
-    const hasRussian = /[а-яА-ЯёЁ]/.test(text); 
+    const hasRussian = /[а-яА-ЯёЁ]/.test(text);
     if (hasEnglish && !hasRussian) return 'en';
     else if (!hasEnglish && hasRussian) return 'rus'
     else return null;
@@ -83,6 +103,13 @@ function getLanguage(text) {
 
 function hasOnlyEnglish(text) {
     const hasEnglish = /[a-zA-Z]/.test(text);
-    const hasRussian = /[а-яА-ЯёЁ]/.test(text); 
+    const hasRussian = /[а-яА-ЯёЁ]/.test(text);
     return hasEnglish && !hasRussian;
+}
+
+function isBinary(text) {
+    for (let i = 0; i < text.length; i++) {
+        if (text[i] !== '0' && text[i] !== '1') return false;
+    }
+    return true;
 }
