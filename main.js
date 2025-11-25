@@ -106,10 +106,3 @@ function hasOnlyEnglish(text) {
     const hasRussian = /[а-яА-ЯёЁ]/.test(text);
     return hasEnglish && !hasRussian;
 }
-
-function isBinary(text) {
-    for (let i = 0; i < text.length; i++) {
-        if (text[i] !== '0' && text[i] !== '1') return false;
-    }
-    return true;
-}
