@@ -70,13 +70,28 @@ window.onload = () => {
             let buttonId = button.id;
             let text = document.getElementById('textRC5').value;
             document.getElementById('keyRC5').value = rc5.randomKey();
-            //let roundsCount = parseInt(document.getElementById('roundsCount').value);
             
             if (buttonId === 'encodeRC5') {
                 document.getElementById('resultRC5').value = rc5.encode(text, document.getElementById('keyRC5').value);
-                console.log(document.getElementById('keyRC5').value); // не доходит !!!
             } else if (buttonId === 'decodeRC5') {
                 document.getElementById('resultRC5').value = rc5.decode(text, document.getElementById('keyRC5').value);
+            }
+
+        });
+    });
+
+    const actionStreamCipherButtons = document.querySelectorAll('.action.streamCipher');
+    actionStreamCipherButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const sc = new StreamCipherWithRC5();
+            let buttonId = button.id;
+            let text = document.getElementById('textStreamCipher').value;
+            document.getElementById('keyStreamCipher').value = new RC5().randomKey();
+            
+            if (buttonId === 'encodeStreamCipher') {
+                document.getElementById('resultStreamCipher').value = sc.encode(text, document.getElementById('keyStreamCipher').value);
+            } else if (buttonId === 'decodeStreamCipher') {
+                document.getElementById('resultStreamCipher').value = sc.decode(text, document.getElementById('keyStreamCipher').value);
             }
 
         });

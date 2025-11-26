@@ -1,12 +1,12 @@
 class RC5 {
     constructor() {
-        this.r = 12; 
-        this.w = 32; 
-        this.b = 16; 
-        this.u = this.w / 8; 
-        this.t = 2 * (this.r + 1); 
-        this.P32 = 0xB7E15163; 
-        this.Q32 = 0x9E3779B9; 
+        this.r = 12;
+        this.w = 32;
+        this.b = 16;
+        this.u = this.w / 8;
+        this.t = 2 * (this.r + 1);
+        this.P32 = 0xB7E15163;
+        this.Q32 = 0x9E3779B9;
     }
 
     leftShift(x, y) {
@@ -20,11 +20,7 @@ class RC5 {
     }
 
     expandKey(key) {
-        if (key.length !== this.b) {
-            throw new Error(`Ключ может быть только ${this.b} байт`);
-        }
-
-        const L = new Uint32Array(Math.ceil(this.b / this.u)); 
+        const L = new Uint32Array(Math.ceil(this.b / this.u));
         const keyU8 = new Uint8Array(key);
 
         for (let i = 0; i < this.b; i++) {
@@ -96,8 +92,34 @@ class RC5 {
 
     randomKey() {
         let array = new Uint8Array(16);
-        crypto.getRandomValues(array); 
+        crypto.getRandomValues(array);
         return String.fromCharCode(...array);
+    }
+
+    encodeForStreamCipher(text, key) {
+        const S = this.expandKey(key);
+
+        let A = (text[0] | (text[1] << 8) | (text[2] << 16) | (text[3] << 24)) >>> 0;
+        let B = (text[4] | (text[5] << 8) | (text[6] << 16) | (text[7] << 24)) >>> 0;
+
+        A = (A + S[0]) >>> 0;
+        B = (B + S[1]) >>> 0;
+
+        for (let i = 1; i <= this.r; i++) {
+            A = (this.leftShift(A ^ B, B) + S[2 * i]) >>> 0;
+            B = (this.leftShift(B ^ A, A) + S[2 * i + 1]) >>> 0;
+        }
+
+        let result = new Uint8Array(8);
+        result[0] = A & 0xff;
+        result[1] = (A >>> 8) & 0xff;
+        result[2] = (A >>> 16) & 0xff;
+        result[3] = (A >>> 24) & 0xff;
+        result[4] = B & 0xff;
+        result[5] = (B >>> 8) & 0xff;
+        result[6] = (B >>> 16) & 0xff;
+        result[7] = (B >>> 24) & 0xff;
+        return result;
     }
 
     encode(text, key) {
@@ -115,7 +137,7 @@ class RC5 {
 
             const [A2, B2] = this.encodeBlock(A, B, S);
 
-            view.setUint32(i, A2, true); 
+            view.setUint32(i, A2, true);
             view.setUint32(i + 4, B2, true);
         }
 
@@ -136,7 +158,7 @@ class RC5 {
         const view = new DataView(data.buffer);
 
         for (let i = 0; i < data.length; i += 8) {
-            const A = view.getUint32(i, true); 
+            const A = view.getUint32(i, true);
             const B = view.getUint32(i + 4, true);
 
             const [A2, B2] = this.decodeBlock(A, B, S);
