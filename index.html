@@ -11,6 +11,7 @@
         <script src="lab2/GermanCipher.js"></script> 
         <script src="lab3/RC5.js"></script>
         <script src="lab4/StreamCipherWithRC5.js"></script>
+        <script src="lab5/ElGamal.js"></script>
         <script src="main.js"></script>
         <link rel="stylesheet" href="style.css">
 
@@ -18,6 +19,7 @@
         <button class="mainButton" id="germanCipherButton">Немецкий шифр 1-й мировой</button>
         <button class="mainButton" id="RC5Button">Стандарт RC5</button>
         <button class="mainButton" id="streamCipherButton">Поточный шифр</button>
+        <button class="mainButton" id="ElGamalButton">Цифровая подпись Эль-Гамаля</button>
 
         <div class="hidden" id="SARC">
             <h2>Шифр одноалфавитной замены</h2>
@@ -49,11 +51,20 @@
 
         <div class="hidden" id="streamCipher">
             <h2>Поточный шифр</h2>
-            <textarea class="flex" id="textStreamCipher" placeholder="Введите текст"></textarea>
+            <textarea class="flex" id="textStreamCipher" placeholder="Введите текст">Hello, world! How are you? Today is a great day to start learning encryption. It's interesting and useful. Data encryption protects information from unauthorized access. Use it for secret messages. Start encrypting now!</textarea>
             <textarea class="flex" id="keyStreamCipher" placeholder="Ключ (авто)"></textarea>
             <textarea class="flex" id="resultStreamCipher" placeholder="Результат"></textarea>
             <button class="action streamCipher" id="encodeStreamCipher">Зашифровать</button>
             <button class="action streamCipher" id="decodeStreamCipher">Расшифровать</button>
+        </div>
+
+        <div class="hidden" id="ElGamal">
+            <h2>Цифровая подпись Эль-Гамаля</h2>
+            <textarea class="flex" id="textElGamal" placeholder="Введите текст">Hello, world!</textarea>
+            <textarea class="flex" id="keyElGamal" placeholder="Ключ открытый (авто)"></textarea>
+            <textarea class="flex" id="resultElGamal" placeholder="Результат"></textarea>
+            <button class="action ElGamal" id="encodeElGamal">Зашифровать</button>
+            <button class="action ElGamal" id="decodeElGamal">Расшифровать</button>
         </div>
 
     </body>

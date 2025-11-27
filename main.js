@@ -96,6 +96,26 @@ window.onload = () => {
 
         });
     });
+
+    const actionElGamalButtons = document.querySelectorAll('.action.ElGamal');
+    actionElGamalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const eg = new ElGamal();
+            let buttonId = button.id;
+            let text = document.getElementById('textElGamal').value;
+            let keys = eg.generateKeys();
+            eg.setPrivateKey(keys.privateKey);
+            eg.setPublicKey(keys.publicKey);
+            document.getElementById('keyElGamal').value = `y = ${keys.publicKey.y}, p = ${keys.publicKey.p}, g = ${keys.publicKey.g}`;
+            
+            if (buttonId === 'encodeElGamal') {
+                document.getElementById('resultElGamal').value = eg.encodeText(text);
+            } else if (buttonId === 'decodeElGamal') {
+                document.getElementById('resultElGamal').value = eg.decodeText(text);
+            }
+
+        });
+    });
 }
 
 function parseKeySARC(keyText) {
