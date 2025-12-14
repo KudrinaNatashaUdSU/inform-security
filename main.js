@@ -70,7 +70,7 @@ window.onload = () => {
             let buttonId = button.id;
             let text = document.getElementById('textRC5').value;
             document.getElementById('keyRC5').value = rc5.randomKey();
-            
+
             if (buttonId === 'encodeRC5') {
                 document.getElementById('resultRC5').value = rc5.encode(text, document.getElementById('keyRC5').value);
             } else if (buttonId === 'decodeRC5') {
@@ -87,7 +87,7 @@ window.onload = () => {
             let buttonId = button.id;
             let text = document.getElementById('textStreamCipher').value;
             document.getElementById('keyStreamCipher').value = new RC5().randomKey();
-            
+
             if (buttonId === 'encodeStreamCipher') {
                 document.getElementById('resultStreamCipher').value = sc.encode(text, document.getElementById('keyStreamCipher').value);
             } else if (buttonId === 'decodeStreamCipher') {
@@ -107,13 +107,26 @@ window.onload = () => {
             eg.setPrivateKey(keys.privateKey);
             eg.setPublicKey(keys.publicKey);
             document.getElementById('keyElGamal').value = `y = ${keys.publicKey.y}, p = ${keys.publicKey.p}, g = ${keys.publicKey.g}`;
-            
+
             if (buttonId === 'encodeElGamal') {
                 document.getElementById('resultElGamal').value = eg.encodeText(text);
             } else if (buttonId === 'decodeElGamal') {
                 document.getElementById('resultElGamal').value = eg.decodeText(text);
             }
 
+        });
+    });
+
+    const actionHashButtons = document.querySelectorAll('.action.Hash');
+
+    actionHashButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            let buttonId = button.id;
+            let text = document.getElementById('textHash').value;
+
+            if (buttonId === 'encodeHash') {
+                document.getElementById('resultHash').value = hash(text);
+            }
         });
     });
 }

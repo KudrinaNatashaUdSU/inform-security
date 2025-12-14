@@ -12,6 +12,7 @@
         <script src="lab3/RC5.js"></script>
         <script src="lab4/StreamCipherWithRC5.js"></script>
         <script src="lab5/ElGamal.js"></script>
+        <script src="lab6/hash.js"></script>
         <script src="main.js"></script>
         <link rel="stylesheet" href="style.css">
 
@@ -20,6 +21,7 @@
         <button class="mainButton" id="RC5Button">Стандарт RC5</button>
         <button class="mainButton" id="streamCipherButton">Поточный шифр</button>
         <button class="mainButton" id="ElGamalButton">Цифровая подпись Эль-Гамаля</button>
+        <button class="mainButton" id="HashButton">Хэширование</button>
 
         <div class="hidden" id="SARC">
             <h2>Шифр одноалфавитной замены</h2>
@@ -65,6 +67,13 @@
             <textarea class="flex" id="resultElGamal" placeholder="Результат"></textarea>
             <button class="action ElGamal" id="encodeElGamal">Зашифровать</button>
             <button class="action ElGamal" id="decodeElGamal">Расшифровать</button>
+        </div>
+
+        <div class="hidden" id="Hash">
+            <h2>Хэширование</h2>
+            <textarea class="flex" id="textHash" placeholder="Введите текст">Hello, world!</textarea>
+            <textarea class="flex" id="resultHash" placeholder="Результат"></textarea>
+            <button class="action Hash" id="encodeHash">Захэшировать</button>
         </div>
 
     </body>

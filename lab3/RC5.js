@@ -122,6 +122,10 @@ class RC5 {
         return result;
     }
 
+    encodeForHash(text, key) {
+        return this.encodeForStreamCipher(text, key);
+    }
+
     encode(text, key) {
         const encoder = new TextEncoder();
         const plaintext = encoder.encode(text);
